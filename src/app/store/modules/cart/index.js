@@ -1,12 +1,16 @@
 import axios from 'axios'
 
 const state = {
-  cartItems: []
+  cartItems: [],
+  checkout: false
 }
 
 const mutations = {
   UPDATE_CART_ITEMS(state, payload) {
     state.cartItems = payload
+  },
+  CHECKOUT_CART(state) {
+    state.checkout = true
   }
 }
 
@@ -32,6 +36,12 @@ const actions = {
   removeAllCartItems({ commit }) {
     axios.post('/api/cart/delete/all').then((response) => {
       commit('UPDATE_CART_ITEMS', response.data)
+    })
+  },
+
+  checkoutCart({ commit }) {
+    axios.post('/api/cart/checkout').then((response) => {
+      commit('CHECKOUT_CART')
     })
   }
 }

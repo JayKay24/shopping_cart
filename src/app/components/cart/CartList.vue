@@ -22,7 +22,9 @@
         </p>
       </div>
     </ul>
-    <button class="button is-primary" :disabled="!cartItems.length">
+    <button class="button is-primary" 
+      :disabled="!cartItems.length" 
+      @click="checkoutCart">
       Checkout (<span class="has-text-weight-bold">${{ cartTotal }}</span>)
     </button>
   </div>
@@ -46,7 +48,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'removeAllCartItems'
+      'removeAllCartItems',
+      'checkoutCart'
     ])
   },
   created() {
